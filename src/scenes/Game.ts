@@ -2,9 +2,19 @@ import { Scene } from 'phaser';
 
 export class Game extends Scene
 {
-    camera: Phaser.Cameras.Scene2D.Camera;
-    background: Phaser.GameObjects.Image;
-    msg_text : Phaser.GameObjects.Text;
+    grid: Phaser.Physics.Arcade.StaticGroup;
+    cursor: Phaser.Types.Input.Keyboard.CursorKeys;
+    //ships
+    destroyer: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
+    submarine: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
+    cruiser: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
+    battleship: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
+    carrier: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
+
+    playButton: Phaser.GameObjects.Image;
+
+
+
 
     constructor ()
     {
@@ -13,23 +23,13 @@ export class Game extends Scene
 
     create ()
     {
-        this.camera = this.cameras.main;
-        this.camera.setBackgroundColor(0x00ff00);
+        this.cursor = this.input.keyboard!.createCursorKeys(); 
 
-        this.background = this.add.image(512, 384, 'background');
-        this.background.setAlpha(0.5);
+        this.add.image(60,60,'background')
 
-        this.msg_text = this.add.text(512, 384, 'Make something fun!\nand share it with us:\nsupport@phaser.io', {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
-        });
-        this.msg_text.setOrigin(0.5);
+        this.grid = this.physics.add.staticGroup();
 
-        this.input.once('pointerdown', () => {
+        this.playButton = this.add.image(1,2, 'button', 1).setInteractive();
 
-            this.scene.start('GameOver');
-
-        });
     }
 }
