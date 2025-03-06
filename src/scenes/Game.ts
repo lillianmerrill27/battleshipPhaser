@@ -1,5 +1,9 @@
 import { Scene } from 'phaser';
 
+const WIDTH = 400;
+const HEIGHT = 400;
+const CELL_SIZE = 32;
+
 export class Game extends Scene
 {
     grid: Phaser.GameObjects.Grid;
@@ -28,7 +32,7 @@ export class Game extends Scene
     {
         this.load.image('background', 'assets/bg.png')
         
-        this.load.image('destroyer', 'assets/destroyerShip.png');
+        this.load.image('destroyer', 'assets/battleships/destroyerShip.png');
         this.load.image('submarine', 'assets/submarine.png');
         this.load.image('cruiser', 'assets/cruiser.png');
         this.load.image('battleship', 'assets/battleship.png');
@@ -52,9 +56,10 @@ export class Game extends Scene
         }
 
         this.add.image(200,200,'background');
-        this.add.image(200,200,'grid');
+        // this.add.image(200,200,'grid');
+        this.grid = this.add.grid(200,200,CELL_SIZE*10,CELL_SIZE*10,CELL_SIZE,CELL_SIZE,0xff0000)
 
-        this.destroyer = this.add.sprite(200, 200, 'destroyer').setInteractive({ draggable: true });
+        this.destroyer = this.add.sprite(200, 200, 'destroyer').setScale(4).setInteractive({ draggable: true });
         this.submarine = this.add.sprite(250, 200, 'submarine').setInteractive({ draggable: true });
         this.cruiser = this.add.sprite(300, 200, 'cruiser').setInteractive({ draggable: true });
         this.battleship = this.add.sprite(150, 200, 'battleship').setInteractive({ draggable: true });
@@ -73,8 +78,8 @@ export class Game extends Scene
         this.input.on(
             'drag',
             (pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.GameObject, dragX: number, dragY: number) => {
-                this.dragX = Phaser.Math.Snap.To(dragX, 32);
-                this.dragY = Phaser.Math.Snap.To(dragY, 32);
+                this.dragX = Phaser.Math.Snap.To(dragX, CELL_SIZE);
+                this.dragY = Phaser.Math.Snap.To(dragY, CELL_SIZE);
                 (gameObject as Phaser.GameObjects.Image).setPosition(this.dragX, this.dragY);
             }
         );
