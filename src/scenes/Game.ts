@@ -1,4 +1,4 @@
-import { Scene } from 'phaser';
+import { Scene, Tilemaps, Time } from 'phaser';
 
 const WIDTH = 400;
 const HEIGHT = 400;
@@ -31,6 +31,18 @@ export class Game extends Scene
     lengthSub: any;
     lengthBattl: any;
     lengthCarrier: any;
+
+    coordsX: any;
+    coordsY: any;
+
+    coordsX()= {'0', '0'}
+
+
+    //pain
+    map: any;
+    update: any;
+    updateMap: any;
+    tile: any;
 
 
     constructor ()
@@ -70,12 +82,13 @@ export class Game extends Scene
         this.grid = this.add.grid(192,180,CELL_SIZE*10,CELL_SIZE*10,CELL_SIZE,CELL_SIZE,0xff0000)
 
         
-        this.destroyer = this.add.sprite(200, 500, 'destroyer').setScale(2.6).setInteractive({ draggable: true });
-        this.submarine = this.add.sprite(250, 200, 'submarine').setOrigin(0, 0.5).setScale(2.6).setInteractive({ draggable: true });
-        this.cruiser = this.add.sprite(300, 200, 'cruiser').setOrigin(0 ,0.5).setScale(2.6).setInteractive({ draggable: true });
-        this.battleship = this.add.sprite(150, 200, 'battleship').setOrigin(0, 0.65).setScale(2.6).setInteractive({ draggable: true });
-        this.carrier = this.add.sprite(100, 200, 'carrier').setOrigin(0, 0.65).setScale(2.6).setInteractive({ draggable: true });
+        this.destroyer = this.add.sprite(160, 415, 'destroyer').setOrigin(0, 0.5).setScale(2.6).setInteractive({ draggable: true });
+        this.submarine = this.add.sprite(50, 435, 'submarine').setOrigin(0, 0.5).setScale(2.6).setInteractive({ draggable: true });
+        this.cruiser = this.add.sprite(225, 435, 'cruiser').setOrigin(0 ,0.5).setScale(2.6).setInteractive({ draggable: true });
+        this.battleship = this.add.sprite(220, 385, 'battleship').setOrigin(0, 0.65).setScale(2.6).setInteractive({ draggable: true });
+        this.carrier = this.add.sprite(35, 385, 'carrier').setOrigin(0, 0.65).setScale(2.6).setInteractive({ draggable: true });
         this.positions = {};
+
        
         this.lengthDestroyer = 1; //+1 --> 2
         this.lengthSub = 2; //+1 --> 3
@@ -91,9 +104,10 @@ export class Game extends Scene
         //     gameObject.setPosition(dragX, dragY);
         // });
 
+
+
         for(let i=0; i < this.lengthDestroyer ; i++) {
-            // x = this.dragX/32-1
-            // y = this.dragY/32-1
+            
         }
 
         for(let i=0; i < this.lengthSub ; i++) {
@@ -119,14 +133,13 @@ export class Game extends Scene
                 this.dragY = Phaser.Math.Snap.To(dragY, CELL_SIZE);
                 (gameObject as Phaser.GameObjects.Image).setPosition(this.dragX, this.dragY);
                 this.positions[gameObject.texture.key] = {
-                    x: this.dragX/32-1,
-                    y: this.dragY/32-1
+                    x: this.dragX/32,
+                    y: this.dragY/32,
                 }
                 console.log(this.positions);
-                console.log(this.dragX/32 - 1,this.dragY/32 - 1) //then update grid
+                console.log(this.dragX/32,this.dragY/32) //then update grid
             }
         );
-
 
     }
 }
