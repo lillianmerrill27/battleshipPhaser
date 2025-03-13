@@ -35,7 +35,7 @@ export class Game extends Scene
     coordsX: any;
     coordsY: any;
 
-    coordsX()= {'0', '0'}
+    //coordsX()= {'0', '0'}
 
 
     //pain
@@ -43,6 +43,8 @@ export class Game extends Scene
     update: any;
     updateMap: any;
     tile: any;
+    x: any;
+    y: any;
 
 
     constructor ()
@@ -126,6 +128,9 @@ export class Game extends Scene
             
         }
 
+        this.x = this.dragX/32;
+        this.y = this.dragY/32;
+
         this.input.on(
             'drag',
             (pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.GameObject, dragX: number, dragY: number) => {
@@ -137,9 +142,16 @@ export class Game extends Scene
                     y: this.dragY/32,
                 }
                 console.log(this.positions);
-                console.log(this.dragX/32,this.dragY/32) //then update grid
+                console.log(this.dragX/32,this.dragY/32); //then update grid
             }
         );
+
+
+    
+
+        this.update.grid(
+
+        )
 
     }
 }
