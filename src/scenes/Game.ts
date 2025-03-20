@@ -36,12 +36,6 @@ export class Game extends Scene
     coordsY: any;
 
     text: any;
-    // coordsDisplay: any;
-
-    //coordsX()= {'0', '0'}
-
-
-    //pain
     map: any;
     update: any;
     updateMap: any;
@@ -76,17 +70,11 @@ export class Game extends Scene
     create ()
     {
 
-
-        // const map = this.make.tilemap({ key: 'map', tileWidth: 32, tileHeight: 32 });
-        // const tileset = map.addTilesetImage('tiles');
-        // const layer = map.createLayer('tile', tileset, 0, 0);
-
         if (this.input.keyboard) {
             this.cursor = this.input.keyboard!.createCursorKeys(); 
         }
 
         this.add.image(200,200,'background');
-        // this.add.image(200,200,'grid');
         this.grid = this.add.grid(192,180,CELL_SIZE*10,CELL_SIZE*10,CELL_SIZE,CELL_SIZE,0xff0000)
 
         
@@ -102,42 +90,6 @@ export class Game extends Scene
         this.ships.forEach(ship => {
             this.totalCells = ship.length / CELL_SIZE;
         })
-
-        // this.lengthDestroyer = 1; //+1 --> 2
-        // this.lengthSub = 2; //+1 --> 3
-        // this.lengthCruiser = 2; //+1 --> 3
-        // this.lengthBattl = 3; //+1 --> 4
-        // this.lengthCarrier = 4; //+1 --> 5
-
-        // this.playButton = this.add.image(1,2, 'button', 1).setInteractive();
-
-        // this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
-        //     this.dragX = Phaser.Math.Snap.To(dragX, 64);
-        //     this.dragY = Phaser.Math.Snap.To(dragY, 64);
-        //     gameObject.setPosition(dragX, dragY);
-        // });
-
-
-
-        // for(let i=0; i < this.lengthDestroyer ; i++) {
-            
-        // }
-
-        // for(let i=0; i < this.lengthSub ; i++) {
-            
-        // }
-
-        // for(let i=0; i < this.lengthCruiser ; i++) {
-            
-        // }
-
-        // for(let i=0; i < this.lengthBattl ; i++) {
-            
-        // }
-
-        // for(let i=0; i < this.lengthCarrier ; i++) {
-            
-        // }
 
         this.x = this.dragX/32;
         this.y = this.dragY/32;
