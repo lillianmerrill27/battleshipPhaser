@@ -11,60 +11,28 @@ export class Game extends Scene
 {
     grid: Phaser.GameObjects.Grid;
     cursor: Phaser.Types.Input.Keyboard.CursorKeys;
-    //ships
 
-    ships: any;
+    ships: Phaser.GameObjects.Sprite[];
     destroyer: Phaser.GameObjects.Sprite;
     submarine: Phaser.GameObjects.Sprite;
     cruiser: Phaser.GameObjects.Sprite;
     battleship: Phaser.GameObjects.Sprite;
     carrier: Phaser.GameObjects.Sprite;
-    positions: any;
+    positions: { [key: string]: {x: number, y: number}};
 
     playButton: Phaser.GameObjects.Image;
 
-    gameObject: any; 
-    pointer: any;
-    dragX: any;
-    dragY: any;
+    /** The currently dragged x coordinate on the grid. */
+    dragX: number;
+    /** The currently dragged x coordinate on the grid. */
+    dragY: number;
 
-    totalCells: any;
-    length: any;
-    cellWidth: any;
-
-    coordsX: any;
-    coordsY: any;
-
-    text: any;
-    map: any;
-    update: any;
-    updateMap: any;
-    tile: any;
-    x: any;
-    y: any;
-
-    shipHit: any;
-
+    x: number;
+    y: number;
 
     constructor ()
     {
         super('Game');
-    }
-
-    preload ()
-    {
-        this.load.image('background', 'assets/bg.png')
-        
-        this.load.image('destroyer', 'assets/battleships/destroyerShip.png');
-        this.load.image('submarine', 'assets/battleships/submarine.png');
-        this.load.image('cruiser', 'assets/battleships/cruiser.png');
-        this.load.image('battleship', 'assets/battleships/battleship.png');
-        this.load.image('carrier', 'assets/battleships/carrier.png');
-
-        this.load.image('grid', 'assets/grid.jpg');
-        
-        this.load.image('tiles', 'assets/tiles.png'); // Ensure correct path
-        this.load.tilemapTiledJSON('map', 'assets/map.json'); // Ensure the map is loaded
     }
 
     create ()
@@ -86,17 +54,13 @@ export class Game extends Scene
         this.positions = {};
 
         this.ships = [this.carrier, this.battleship, this.cruiser, this.destroyer, this.submarine];
-       
-        this.ships.forEach(ship => {
-            this.totalCells = ship.length / CELL_SIZE;
-        })
 
         this.x = this.dragX/32;
         this.y = this.dragY/32;
 
         this.input.on(
             'drag',
-            (pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.GameObject, dragX: number, dragY: number) => {
+            (pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.Sprite, dragX: number, dragY: number) => {
                 this.dragX = Phaser.Math.Snap.To(dragX, CELL_SIZE);
                 this.dragY = Phaser.Math.Snap.To(dragY, CELL_SIZE);
                 (gameObject as Phaser.GameObjects.Image).setPosition(this.dragX, this.dragY);
@@ -104,21 +68,12 @@ export class Game extends Scene
                     x: this.dragX/32,
                     y: this.dragY/32,
                 }
-
-                
-                
                 console.log(this.positions);
                 console.log(this.dragX/32,this.dragY/32); //then update grid
-                this.add.text = this.text.setText()
         });
     
-        
-
-        // this.update.grid(
-
-        // )
+    }
+    update(){
 
     }
 }
-
-console.log()

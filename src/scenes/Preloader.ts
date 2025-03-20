@@ -33,6 +33,19 @@ export class Preloader extends Scene
         this.load.setPath('assets');
 
         this.load.image('logo', 'logo.png');
+
+        this.load.image('background', 'bg.png')
+        
+        this.load.image('destroyer', 'battleships/destroyerShip.png');
+        this.load.image('submarine', 'battleships/submarine.png');
+        this.load.image('cruiser', 'battleships/cruiser.png');
+        this.load.image('battleship', 'battleships/battleship.png');
+        this.load.image('carrier', 'battleships/carrier.png');
+
+        this.load.image('grid', 'grid.jpg');
+        
+        this.load.image('tiles', 'tiles.png'); // Ensure correct path
+        this.load.tilemapTiledJSON('map', 'map.json'); // Ensure the map is loaded
     }
 
     create ()
