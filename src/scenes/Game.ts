@@ -5,12 +5,15 @@ const HEIGHT = 400;
 const CELL_SIZE = 32;
 const offsetX = 10;
 const offsetY = 10
+const coords = '(dragX/32, dragY/32)'
 
 export class Game extends Scene
 {
     grid: Phaser.GameObjects.Grid;
     cursor: Phaser.Types.Input.Keyboard.CursorKeys;
     //ships
+
+    ships: any;
     destroyer: Phaser.GameObjects.Sprite;
     submarine: Phaser.GameObjects.Sprite;
     cruiser: Phaser.GameObjects.Sprite;
@@ -25,15 +28,15 @@ export class Game extends Scene
     dragX: any;
     dragY: any;
 
-    area: any;
-    lengthDestroyer: any;
-    lengthCruiser: any;
-    lengthSub: any;
-    lengthBattl: any;
-    lengthCarrier: any;
+    totalCells: any;
+    length: any;
+    cellWidth: any;
 
     coordsX: any;
     coordsY: any;
+
+    text: any;
+    // coordsDisplay: any;
 
     //coordsX()= {'0', '0'}
 
@@ -45,6 +48,8 @@ export class Game extends Scene
     tile: any;
     x: any;
     y: any;
+
+    shipHit: any;
 
 
     constructor ()
@@ -71,6 +76,7 @@ export class Game extends Scene
     create ()
     {
 
+
         // const map = this.make.tilemap({ key: 'map', tileWidth: 32, tileHeight: 32 });
         // const tileset = map.addTilesetImage('tiles');
         // const layer = map.createLayer('tile', tileset, 0, 0);
@@ -91,12 +97,17 @@ export class Game extends Scene
         this.carrier = this.add.sprite(35, 385, 'carrier').setOrigin(0, 0.65).setScale(2.6).setInteractive({ draggable: true });
         this.positions = {};
 
+        this.ships = [this.carrier, this.battleship, this.cruiser, this.destroyer, this.submarine];
        
-        this.lengthDestroyer = 1; //+1 --> 2
-        this.lengthSub = 2; //+1 --> 3
-        this.lengthCruiser = 2; //+1 --> 3
-        this.lengthBattl = 3; //+1 --> 4
-        this.lengthCarrier = 4; //+1 --> 5
+        this.ships.forEach(ship => {
+            this.totalCells = ship.length / CELL_SIZE;
+        })
+
+        // this.lengthDestroyer = 1; //+1 --> 2
+        // this.lengthSub = 2; //+1 --> 3
+        // this.lengthCruiser = 2; //+1 --> 3
+        // this.lengthBattl = 3; //+1 --> 4
+        // this.lengthCarrier = 4; //+1 --> 5
 
         // this.playButton = this.add.image(1,2, 'button', 1).setInteractive();
 
@@ -108,25 +119,25 @@ export class Game extends Scene
 
 
 
-        for(let i=0; i < this.lengthDestroyer ; i++) {
+        // for(let i=0; i < this.lengthDestroyer ; i++) {
             
-        }
+        // }
 
-        for(let i=0; i < this.lengthSub ; i++) {
+        // for(let i=0; i < this.lengthSub ; i++) {
             
-        }
+        // }
 
-        for(let i=0; i < this.lengthCruiser ; i++) {
+        // for(let i=0; i < this.lengthCruiser ; i++) {
             
-        }
+        // }
 
-        for(let i=0; i < this.lengthBattl ; i++) {
+        // for(let i=0; i < this.lengthBattl ; i++) {
             
-        }
+        // }
 
-        for(let i=0; i < this.lengthCarrier ; i++) {
+        // for(let i=0; i < this.lengthCarrier ; i++) {
             
-        }
+        // }
 
         this.x = this.dragX/32;
         this.y = this.dragY/32;
@@ -141,17 +152,21 @@ export class Game extends Scene
                     x: this.dragX/32,
                     y: this.dragY/32,
                 }
+
+                
+                
                 console.log(this.positions);
                 console.log(this.dragX/32,this.dragY/32); //then update grid
-            }
-        );
-
-
+                this.add.text = this.text.setText()
+        });
     
+        
 
-        this.update.grid(
+        // this.update.grid(
 
-        )
+        // )
 
     }
 }
+
+console.log()
