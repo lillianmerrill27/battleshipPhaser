@@ -6,11 +6,14 @@ const CELL_SIZE = 32;
 const offsetX = 10;
 const offsetY = 10
 const coords = '(dragX/32, dragY/32)'
+const rowWidth = 10;
+const colHeight = 10;
 
 export class Game extends Scene
 {
     grid: Phaser.GameObjects.Grid;
     cursor: Phaser.Types.Input.Keyboard.CursorKeys;
+    confirmBttn: any;
 
     ships: Phaser.GameObjects.Sprite[];
     destroyer: Phaser.GameObjects.Sprite;
@@ -20,7 +23,6 @@ export class Game extends Scene
     carrier: Phaser.GameObjects.Sprite;
     positions: { [key: string]: {x: number, y: number}};
 
-    playButton: Phaser.GameObjects.Image;
 
     /** The currently dragged x coordinate on the grid. */
     dragX: number;
@@ -72,8 +74,30 @@ export class Game extends Scene
                 console.log(this.dragX/32,this.dragY/32); //then update grid
         });
     
+//confirm button
+        this.confirmBttn = this.add.text(200,500, 'Confirm',  { fill: '#0f0' });
+//button --> when click, 
+        this.confirmBttn.setInteractive({
+            onclick() {
+                let coordinates = [];
+                for (let gridY = 0; gridY < this.grid.rowWidth; gridY++) {
+                    for (let gridX = 0; gridX < this.grid.rowWidth; gridX++) {
+                        let busy = false; //
+                        let shipname = null;
+                        let shiplength = null;
+                        //continue next tab over.... 
+                    }
+
+                }
+
+            }
+        });
+
+        
+
     }
     update(){
+
 
     }
 }
