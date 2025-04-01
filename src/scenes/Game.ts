@@ -73,6 +73,7 @@ export class Game extends Scene
                 console.log(this.positions);
                 console.log(this.dragX/32,this.dragY/32); //then update grid
         });
+
     
 //confirm button
         this.confirmBttn = this.add.text(200,500, 'Confirm',  { fill: '#0f0' });
@@ -85,14 +86,20 @@ export class Game extends Scene
                         let busy = false; //
                         let shipname = null;
                         let shiplength = null;
+                        let posX = this.gridX + gridX * this.CELL_SIZE;
+                        let posY = this.gridY + gridY * this.CELL_SIZE;
+                // Rotation
+                        // for (let ship of this.grid.ships) {
+                        //     if (ship isRotated)
+                        // }
                         //continue next tab over.... 
+                        let shipLength = ship.length;
                     }
 
                 }
 
             }
         });
-
         
 
     }
