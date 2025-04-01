@@ -92,7 +92,6 @@ export class Game extends Scene
                         // for (let ship of this.grid.ships) {
                         //     if (ship isRotated)
                         // }
-                        //continue next tab over.... 
                         let shipLength = ship.length;
                     }
 
